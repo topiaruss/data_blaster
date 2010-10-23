@@ -1,53 +1,3 @@
-/**
- * Module:  app_xc2_firmware
- * Version: 1v3
- * Build:   ceb87a043f18842a34b85935baf3f2a402246dbd
- * File:    httpd.c
- *
- * The copyrights, all other intellectual and industrial 
- * property rights are retained by XMOS and/or its licensors. 
- * Terms and conditions covering the use of this code can
- * be found in the Xmos End User License Agreement.
- *
- * Copyright XMOS Ltd 2009
- *
- * In the case where this code is a modification of existing code
- * under a separate license, the separate license terms are shown
- * below. The modifications to the code are still covered by the 
- * copyright notice above.
- *
- **/                                   
-/*
- * Copyright (c) 2001-2003 Swedish Institute of Computer Science.
- * All rights reserved. 
- * 
- * Redistribution and use in source and binary forms, with or without modification, 
- * are permitted provided that the following conditions are met:
- *
- * 1. Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- * 3. The name of the author may not be used to endorse or promote products
- *    derived from this software without specific prior written permission. 
- *
- * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED 
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT 
- * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT 
- * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING 
- * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
- * OF SUCH DAMAGE.
- *
- * This file is part of the lwIP TCP/IP stack.
- * 
- * Author: Adam Dunkels <adam@sics.se>
- *
- */
 #include <stdio.h>
 
 
@@ -74,6 +24,7 @@ typedef struct dumper_state_t {
 } dumper_state_t;
 
 dumper_state_t connection_states[NUM_HTTPD_CONNECTIONS];
+
 
 void dumper_init(void)
 {
@@ -236,7 +187,7 @@ void dumper_handle_send_request(chanend tcp_svr,
 }
 
 void dumper_init_state(chanend tcp_svr,
-                      xtcp_connection_t *conn)
+        xtcp_connection_t *conn)
 {
   int i;
 
@@ -247,7 +198,6 @@ void dumper_init_state(chanend tcp_svr,
   
   if (i==NUM_HTTPD_CONNECTIONS) {
     printstr("Too many dumper connections!");
-    xtcp_close(tcp_svr, conn);
   }
   else {
     //    printstr("open ");
@@ -278,7 +228,7 @@ void dumper_free_state(xtcp_connection_t *conn)
 }
 
 
-void dumper_handle_event(chanend tcp_svr,
+void old_dumper_handle_event(chanend tcp_svr,
                         xtcp_connection_t *conn,
                         chanend led_svr) 
 {
@@ -302,6 +252,9 @@ void dumper_handle_event(chanend tcp_svr,
       break;
     }
 }
+
+
+
 
 
 
