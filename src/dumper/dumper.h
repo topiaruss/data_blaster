@@ -1,5 +1,5 @@
-#ifndef _dumperc_h_
-#define _dumperc_h_
+#ifndef _dumper_h_
+#define _dumper_h_
 
 #include "xtcp_client.h"
 
